@@ -106,6 +106,8 @@ WORKDIR=/tmp/lima/output
 printf '%s Editing pacman.conf to add Archlinux ARM mirrorlist...%s\n' "$TEXT_GREEN" "$FORMAT_RESET"
 if ! grep -q "^\[alarm\]" /etc/pacman.conf || ! grep -q "^Include = /etc/pacman.d/mirrorlist" /etc/pacman.conf; then
     sudo tee -a /etc/pacman.conf >/dev/null <<'PACMAN_CONF'
+SigLevel = Required DatabaseNever
+
 [core]
 Include = /etc/pacman.d/mirrorlist
 
